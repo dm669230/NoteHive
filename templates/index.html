@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Viewer and Text Extractor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>PDF Viewer and Text Extractor</h1>
+
+        <div class="file-list">
+            <label for="file-select">Select File:</label>
+            <select id="file-select" onchange="handleFileSelect()">
+                <option value="">Create New File</option>
+            </select>
+            <input type="text" id="new-file-name" placeholder="Enter new file name">
+            <button onclick="createNewFile()">Create File</button>
+        </div>
+
+        <div class="text-boxes-container">
+            <div class="text-box">
+                <div class="text-box-header">Selected Text</div>
+                <textarea id="text-input" placeholder="Selected text will appear here..."></textarea>
+            </div>
+            <div class="text-box">
+                <div class="text-box-header">File Content</div>
+                <div id="view-content">No file content to display</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <select id="save-location">
+                <option value="local">Save Locally</option>
+                <option value="google">Save to Google Drive</option>
+            </select>
+            <button onclick="saveText()">Save Selected Text</button>
+            <button onclick="undoText()">Undo</button>
+            <button onclick="viewFile()">View File</button>
+        </div>
+
+        <div class="pdf-input">
+            <input type="file" id="pdf-file" accept=".pdf" onchange="loadPDF(this)">
+        </div>
+
+        <p id="response-message"></p>
+        
+        <div id="pdf-container">
+            <div id="page-controls">
+                <button onclick="prevPage()">Previous</button>
+                <span id="page-num"></span> / <span id="page-count"></span>
+                <button onclick="nextPage()">Next</button>
+            </div>
+            <div id="viewer-container">
+                <canvas id="pdf-canvas"></canvas>
+                <div id="text-layer"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

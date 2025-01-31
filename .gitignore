@@ -1,0 +1,37 @@
+# IDE-specific files
+.idea/
+.vscode/
+
+# Virtual environments
+.venv*/
+venv*/
+.myenv*/
+myenv*/
+
+# Python-related
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Build and distribution
+dist/
+build/
+*.egg-info/
+
+# Testing and coverage
+.coverage*
+htmlcov/
+.tox/
+
+# Documentation
+docs/_build/
+local_docs/
+
+# Environment files
+.env*/
+.env
+*.env
+
+# Node.js dependencies (if applicable)
+node_modules/
